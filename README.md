@@ -16,3 +16,8 @@ upload you_file_name.txt
 ```
 
 after that it will show some strinks, search and copy the link to you browser
+
+#note 
+the link name example
+
+https://file.xxxx
