@@ -1,11 +1,19 @@
-# Upload file via terminal using file.io 
-# Author : Aman Roy (https://github.com/aman-roy)
-
-upload () { if [ $# = 1 -o $# = 2 ];then if [ -f "$1" ]
-then 
-if [ $# = 1 ]
-then curl -F "file=@$1" https://file.io/ 
-else if [[ "$2" =~ ^[1-9]+[wmy]$ ]]
-then curl -F "file=@$1" https://file.io/\?expires=$2
-else 
-echo $'Wrong expiration format.\neg. 1(w/m/y), etc.';fi;fi;else echo "file doesn't exist";fi;else echo $'usage: upload file_name.ext [expiration]\nexpiration format: 1-9(w/m/y) # (w)eeks, m(onths), (y)ear';fi }
+upload () {
+  if [ $# = 1 -o $# = 2 ]; then
+    if [ -f "$1" ]; then
+      if [ $# = 1 ]; then
+        curl -s -F "file=@$1" https://file.io/ | grep -o '"link":"[^"]*"' | cut -d'"' -f4
+      else
+        if [[ "$2" =~ ^[1-9]+[wmy]$ ]]; then 
+          curl -s -F "file=@$1" https://file.io/?expires=$2 | grep -o '"link":"[^"]*"' | cut -d'"' -f4
+        else
+          echo $'Wrong expiration format.neg. 1(w/m/y), etc.'
+        fi
+      fi
+    else
+      echo "file doesn't exist"
+    fi
+  else
+    echo $'usage: upload file_name.ext [expiration]nexpiration format: 1-9(w/m/y) # (w)eeks, m(onths), (y)ear'
+  fi
+}
