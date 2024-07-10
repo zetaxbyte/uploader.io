@@ -5,7 +5,7 @@ Upload file on Terminal linux to website and download
 copy and paste this to you terminal
 
 ```
-curl -L https://github.com/zetaxlinux/uploader.io/raw/mweh/uploader >> ~/.bashrc && source ~/.bashrc
+curl -L https://github.com/zetaxbyte/uploader.io/raw/mweh/uploader >> ~/.bashrc && source ~/.bashrc
 ```
 
 # UPLOAD COMMAND
